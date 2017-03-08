@@ -1,0 +1,12 @@
+{
+    "manifest_version": 2,
+    "name": "百科词条重复比对",
+    "version": "1.0",
+    "description": "百科词条重复比对",
+    "content_scripts": [
+        {
+            "matches": ["*://admin.baike.qq.com/*"],
+            "js": ["js/jquery.min.js","js/textMatch.js"]
+        }
+    ]
+}

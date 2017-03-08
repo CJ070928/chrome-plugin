@@ -1,0 +1,173 @@
+// http://tableizer.journalistopia.com/ 转table网址
+$('.module_layer .module_categories a').click(function(){
+	var aText=$(this)[0].innerHTML;
+	console.log(aText);
+	if(aText=='电影作品'||aText=='电视剧作品'||aText=='综艺节目'||aText=='广告代言'||aText=='荣誉记录'||aText=='人物履历'||aText=="演员表"||aText=="职员表"||"分集剧情"){
+		  setTimeout(function(){
+		   	$('.edit_layer_wrap .module_title_wrap').append("<button id='openTable'>拉取全部字段</button>"); 
+		    $('.layer_content').before("<div id='pasteTable' contentEditable=true style=' overflow-y:scroll;width:100%;height:50px;background-color:#ddd'>&nbsp;</div>");
+		   },500);
+	 }
+})
+var movieAppend='<li class="mod_content_wrap"><div class="movie_time"><div class="mod_input_wrap"><em>*</em><input type="text" name="time" class="input_content" placeholder="如:2010-01" rule="require,date" msg="如：2010-01" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)" value=""></div></div><div class="movie_name"><div class="mod_input_wrap"><em>*</em><input type="text" name="name" class="input_content" placeholder="电影名称" rule="require" msg="请填写电影名称" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)" value=""></div></div><div class="movie_role"><div class="mod_input_wrap"><em>*</em><input type="text" name="role" class="input_content" placeholder="角色名称" rule="require" msg="请填写角色名称" multi="3" value="" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)"><a class="btn_add_item" title="增加项目" href="javascript:void(0)" onclick="BaikeNew.module.addInput(this);return false">增加</a></div></div><div class="movie_director"><div class="mod_input_wrap"><input type="text" name="director" class="input_content" placeholder="导演姓名" multi="3" value="" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)"><a class="btn_add_item" title="增加项目" href="javascript:void(0)" onclick="BaikeNew.module.addInput(this);return false">增加</a></div></div><div class="movie_cast"><div class="mod_input_wrap"><input type="text" name="cast" class="input_content" placeholder="演员姓名" multi="3" value="" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)"><a class="btn_add_item" title="增加项目" href="javascript:void(0)" onclick="BaikeNew.module.addInput(this);return false">增加</a></div></div><div class="btn_edit_wrap"><a class="btn_del_row" title="删除本行" href="javascript:void(0)" onclick="BaikeNew.module.deleteEditRow(this);return false">删除</a></div></li>'
+var showAppend='<li class="mod_content_wrap"><div class="column1"><div class="mod_input_wrap"><em>*</em><input type="text" name="time" class="input_content" placeholder="如:2010-01" rule="date" msg="如：2010-01" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)" value=""></div></div><div class="column2"><div class="mod_input_wrap"><em>*</em><input type="text" name="name" class="input_content" placeholder="节目名称" rule="require,maxlength" msg="请填写节目名称,不能超过20个字" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)" value="" maxlength="20"></div></div><div class="column3"><div class="mod_input_wrap"><input type="text" name="platform" class="input_content" placeholder="播出平台" rule="maxlength" msg="不能超过20个字" maxlength="20" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)" value=""></div></div><div class="column4"><div class="mod_input_wrap"><!-- <em>*</em> --><input type="text" name="description" class="input_content" placeholder="节目简介" rule="maxlength" msg="不能超过50个字" maxlength="50" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)" value=""></div></div><div class="btn_edit_wrap"><a class="btn_move_up" title="向上移动" href="javascript:void(0)" onclick="BaikeNew.module.rowMoveup(this);return false">向上移动</a><a class="btn_move_down" title="向下移动" href="javascript:void(0)" onclick="BaikeNew.module.rowMovedown(this);return false">向下移动</a><a class="btn_del_row" title="删除本行" href="javascript:void(0)" onclick="BaikeNew.module.deleteEditRow(this);return false">删除</a></div></li>'
+var adsAppend='<li class="mod_content_wrap"><div class="adv_time"><div class="mod_input_wrap"><em>*</em><input type="text" name="time" class="input_content" placeholder="如:2010-01" rule="date" msg="如:2010-01" value="" onfocus="BaikeNew.module.onfocus(this)" onblur="BaikeNew.module.onblur(this)"></div></div><div class="adv_name"><div class="mod_input_wrap"><em>*</em><input type="text" name="name" class="input_content" placeholder="代言产品" rule="require" msg="请输入代言产品" value="" onfocus="BaikeNew.module.onfocus(this)" onblur="BaikeNew.module.onblur(this)"></div></div><div class="btn_edit_wrap"><a class="btn_move_up" title="向上移动" href="javascript:void(0)" onclick="BaikeNew.module.rowMoveup(this);return false">向上移动</a><a class="btn_move_down" title="向下移动" href="javascript:void(0)" onclick="BaikeNew.module.rowMovedown(this);return false">向下移动</a><a class="btn_del_row" title="删除本行" href="javascript:void(0)" onclick="BaikeNew.module.deleteEditRow(this);return false">删除</a></div></li>'
+var honorAppend='<li class="mod_content_wrap"><div class="honor_time"><div class="mod_input_wrap"><em>*</em><input type="text" name="time" class="input_content" placeholder="如:2010-01" msg="如:2010-01" rule="date" value="" onfocus="BaikeNew.module.onfocus(this)" onblur="BaikeNew.module.onblur(this)"></div></div><div class="honor_ceremony"><div class="mod_input_wrap"><em>*</em><input type="text" name="ceremony" class="input_content" placeholder="颁奖典礼" msg="请填写颁奖典礼" rule="require" value="" onfocus="BaikeNew.module.onfocus(this)" onblur="BaikeNew.module.onblur(this)"></div></div><div class="honor_receive"><div class="mod_input_wrap"><em>*</em><input type="text" name="honor" class="input_content" placeholder="所获荣誉" msg="请填写所获荣誉" rule="require" value="" onfocus="BaikeNew.module.onfocus(this)" onblur="BaikeNew.module.onblur(this)"></div></div><div class="honor_name"><div class="mod_input_wrap"><em>*</em><input type="text" name="works" class="input_content" placeholder="获奖作品" msg="请填写获奖作品" rule="require" value="" onfocus="BaikeNew.module.onfocus(this)" onblur="BaikeNew.module.onblur(this)"></div></div><div class="btn_edit_wrap"><a class="btn_move_up" title="向上移动" href="javascript:void(0)" onclick="BaikeNew.module.rowMoveup(this);return false">向上移动</a><a class="btn_move_down" title="向下移动" href="javascript:void(0)" onclick="BaikeNew.module.rowMovedown(this);return false">向下移动</a><a class="btn_del_row" title="删除本行" href="javascript:void(0)" onclick="BaikeNew.module.deleteEditRow(this);return false">删除</a></div></li>'
+var resumeAppend='<li class="mod_content_wrap"><div class="resume_time"><div class="mod_input_wrap"><em>*</em><input type="text" name="time" class="input_content" placeholder="如:2010-01" msg="如:2010-01" rule="date_range" value="" onfocus="BaikeNew.module.onfocus(this)" onblur="BaikeNew.module.onblur(this)">         </div>       </div>       <div class="resume_detail">         <div class="mod_input_wrap">           <em>*</em> <input type="text" name="detail" class="input_content" placeholder="履历详情" msg="请填写履历详情" rule="require" value="" onfocus="BaikeNew.module.onfocus(this)" onblur="BaikeNew.module.onblur(this)">         </div>       </div>                  <div class="btn_edit_wrap">         <a class="btn_move_up" title="向上移动" href="javascript:void(0)" onclick="BaikeNew.module.rowMoveup(this);return false">向上移动</a>         <a class="btn_move_down" title="向下移动" href="javascript:void(0)" onclick="BaikeNew.module.rowMovedown(this);return false">向下移动</a>         <a class="btn_del_row" title="删除本行" href="javascript:void(0)" onclick="BaikeNew.module.deleteEditRow(this);return false">删除</a></div></li>'
+var episodeAppend='<li class="mod_content_wrap"><div class="episode_role"><div class="mod_input_wrap"><em>*</em><div contenteditable="true" class="div_input input_content" name="role" placeholder="请填写角色名称" msg="请填写角色名称" maxlength="30" rule="require" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)"></div></div></div><div class="episode_actor"><div class="mod_input_wrap"><em>*</em><div contenteditable="true" class="div_input input_content" name="actor" placeholder="请填写演员名称" msg="请填写演员名称" maxlength="30" rule="require" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)"></div></div></div><div class="episode_dubbing"><div class="mod_input_wrap"><div contenteditable="true" class="div_input input_content" name="dubbing" placeholder="请填写配音演员" maxlength="30" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)" oldph="请填写配音演员"></div></div></div><div class="episode_remarks"><div class="mod_input_wrap"><div contenteditable="true" class="div_input input_content" name="remarks" placeholder="备注" maxlength="30" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)"></div></div></div><div class="btn_edit_wrap"><a class="btn_move_up" title="向上移动" href="javascript:void(0);" onclick="BaikeNew.module.rowMoveup(this);return false">向上移动</a><a class="btn_move_down" title="向下移动" href="javascript:void(0);" onclick="BaikeNew.module.rowMovedown(this);return false">向下移动</a><a class="btn_del_row" title="删除本行" href="javascript:void(0);" onclick="BaikeNew.module.deleteEditRow(this);return false">删除</a><a class="btn_edit_more" title="更多" onmouseenter="BaikeNew.module.showTools(this)" onmouseleave="BaikeNew.module.hideTools()" href="javascript:void(0);">更多</a><div class="btn_edit_opr hidden" onmouseenter="BaikeNew.module.showTools()" onmouseleave="BaikeNew.module.hideTools()" style="display: none;"><i class="btn_edit_triangle"></i><a href="javascript:void(0);" class="btn_edit_line" onclick="BaikeNew.module.addEditRow(this);return false"><i class="btn_edit_line_icon"></i>添加行</a><a href="javascript:void(0);" class="btn_edit_top" onclick="BaikeNew.module.setTop(this);return false"><i class="btn_edit_top_icon"></i>置顶</a></div></div></li>'
+$(document).on('click','#openTable',function(){
+	 var pasteTable=$('#pasteTable tbody tr');
+	 var project=$(this).parent().find('h3')[0].innerText;
+   
+	  if (project=='电影作品'||project=='电视剧作品') {
+		  	for (var i = 1; i < pasteTable.length; i++) { //遍历tr
+		 	$(pasteTable[i]).childNodes;
+		 	var tds=pasteTable[i].cells;
+		 	if (i>1) {
+		 		$('#edit_row_container').append(movieAppend);
+		 	}
+		 	var input=$('.input_list_wrap').find('li').eq(i-1)[0];	    
+		 	for (var j = 0; j < tds.length; j++) {   // 获取每行tr的td里面的值
+				var tdInner = tds[j].innerText.split('、'); 
+				var testinput=$(input)[0].children[j];
+				if (tdInner.length>1) { //当前个数大于1
+	               var inputParent=$(testinput)[0];
+	               console.log(inputParent);
+	               for(var k=1;k<tdInner.length;k++){
+					
+		                if($(inputParent).hasClass('movie_cast')){//合作演员
+		                	var movieCast='<div class="mod_input_wrap"><input type="text" name="cast" class="input_content" placeholder="演员姓名" multi="3" value="" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)"></div>'
+		                	$(inputParent).append(movieCast);
+		                }else if($(inputParent).hasClass('movie_role')){//扮演角色
+		                	var movieCast='<div class="mod_input_wrap"><em>*</em><input type="text" name="role" class="input_content" placeholder="角色名称" rule="require" msg="请填写角色名称" multi="3" value="" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)"></div>'
+		                	$(inputParent).append(movieCast);
+		                }else if($(inputParent).hasClass('movie_director')){//导演
+		                	var movieCast='<div class="mod_input_wrap"><input type="text" name="director" class="input_content" placeholder="导演姓名" multi="3" value="" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)" oldph="导演姓名"></div>'
+		                	$(inputParent).append(movieCast);
+		                }
+	               			
+				   }
+	               for(var k=0;k<tdInner.length;k++){
+						 var thisInput=$(inputParent).find('input').eq(k)[0];
+						 $(thisInput).val(tdInner[k]);
+	               }
+				}else{ //
+					var currentInput=$(testinput).find('input')[0];
+					$(currentInput).val(tdInner[0]);
+				}	
+			};
+		 };
+	  }else if (project=='综艺节目') {
+	  	for (var i = 1; i < pasteTable.length; i++) { //遍历tr
+		 	$(pasteTable[i]).childNodes;
+		 	var tds=pasteTable[i].cells;
+		 	if (i>1) {
+		 		$('#edit_row_container').append(showAppend);
+		 	}
+		 	var input=$('.input_list_wrap').find('li').eq(i-1)[0];	    
+		 	for (var j = 0; j < tds.length; j++) {   // 获取每行tr的td里面的值
+				var tdInner = tds[j].innerText; 
+				var testinput=$(input)[0].children[j];
+				console.log(tdInner);
+				var currentInput=$(testinput).find('input')[0];
+				$(currentInput).val(tdInner);				
+			};
+		 };
+	  }else if (project=='广告代言') {
+	  	for (var i = 1; i < pasteTable.length; i++) { //遍历tr
+		 	$(pasteTable[i]).childNodes;
+		 	var tds=pasteTable[i].cells;
+		 	if (i>1) {
+		 		$('#edit_row_container').append(adsAppend);
+		 	}
+		 	var input=$('.input_list_wrap').find('li').eq(i-1)[0];	    
+		 	for (var j = 0; j < tds.length; j++) {   // 获取每行tr的td里面的值
+				var tdInner = tds[j].innerText; 
+				var testinput=$(input)[0].children[j];
+				console.log(tdInner);
+				var currentInput=$(testinput).find('input')[0];
+				$(currentInput).val(tdInner);				
+			};
+		 };
+	  }else if (project=='荣誉记录') {
+	  	for (var i = 1; i < pasteTable.length; i++) { //遍历tr
+		 	$(pasteTable[i]).childNodes;
+		 	var tds=pasteTable[i].cells;
+		 	if (i>1) {
+		 		$('#edit_row_container').append(honorAppend);
+		 	}
+		 	var input=$('.input_list_wrap').find('li').eq(i-1)[0];	    
+		 	for (var j = 0; j < tds.length; j++) {   // 获取每行tr的td里面的值
+				var tdInner = tds[j].innerText; 
+				var testinput=$(input)[0].children[j];
+				console.log(tdInner);
+				var currentInput=$(testinput).find('input')[0];
+				$(currentInput).val(tdInner);				
+			};
+		 };
+	  }	else if (project=='人物履历') {
+	  	for (var i = 1; i < pasteTable.length; i++) { //遍历tr
+		 	$(pasteTable[i]).childNodes;
+		 	var tds=pasteTable[i].cells;
+		 	if (i>1) {
+		 		$('#edit_row_container').append(resumeAppend);
+		 	}
+		 	var input=$('.input_list_wrap').find('li').eq(i-1)[0];	    
+		 	for (var j = 0; j < tds.length; j++) {   // 获取每行tr的td里面的值
+				var tdInner = tds[j].innerText; 
+				var testinput=$(input)[0].children[j];
+				console.log(tdInner);
+				var currentInput=$(testinput).find('input')[0];
+				$(currentInput).val(tdInner);				
+			};
+		 };
+	  } else if (project=='演员表') {
+         for (var i = 1; i < pasteTable.length; i++) { //遍历tr
+		 	$(pasteTable[i]).childNodes;
+		 	var tds=pasteTable[i].cells;
+		 	if (i>1) {
+		 		$('#edit_row_container').append(episodeAppend);
+		 	}
+		 	var input=$('.input_list_wrap').find('li').eq(i-1)[0];
+		 	for (var j = 0; j < tds.length; j++) {   // 获取每行tr的td里面的值
+				var tdInner = tds[j].innerText; 
+				var testinput=$(input)[0].children[j];
+				console.log(tdInner);
+				var currentInput=$(testinput).find('.mod_input_wrap').find('div')[0];
+				$(currentInput).html(tdInner);				
+			};
+		 }; 
+	  }	else if (project=='职员表'){
+	  	 for (var i = 0; i < pasteTable.length; i++) { //遍历tr
+            $(pasteTable[i]).childNodes;
+		 	var tds=pasteTable[i].innerText.split('、');
+		 	console.log(tds);
+		 	var editDivParent = $('.staff_name');
+		 	if (tds.length > 1) {
+			 	for(var j = 1;j < tds.length; j++ ){
+			 		var currentDivName = $(editDivParent[i]).find('.input_content').attr('name');
+			 		var currentDiv = '<div contenteditable="true" class="div_input input_content" name="'+currentDivName+'" placeholder="姓名" maxlength="30" multi="5" onblur="BaikeNew.module.onblur(this)" onfocus="BaikeNew.module.onfocus(this)"></div>'
+		 		    $(editDivParent[i]).find('.mod_input_wrap').append(currentDiv);
+		 	       } 
+		 	   for(var k=0;k<tds.length;k++){
+						 var thisInput=$(editDivParent[i]).find('.input_content').eq(k)[0];
+						 $(thisInput).html(tds[k]);
+	               }
+		 	}else {
+	 	 		$(editDivParent[i]).find('.input_content').html(tds);
+		 	}
+	  	 }
+	  } else if (project=='分集剧情') {
+       		var time = 0;
+       		var tds=$(pasteTable[0]).find('td');
+            $('.layer_content .title_input_wrap .input_content').val(tds[0].innerText);
+            $('.layer_content .episode_input_wrap #plot_content').html(tds[1].innerText);
+       		console.log('.add_episode_wrap .btn_add_wide');
+       		$('body').on('click','.add_episode_wrap .btn_add_wide',function(){
+       			time ++;
+       			var tds=$(pasteTable[time]).find('td');
+                $('.layer_content .title_input_wrap .input_content').val(tds[0].innerText);
+	            $('.layer_content .episode_input_wrap #plot_content').html(tds[1].innerText);
+       		})
+	  } 
+})

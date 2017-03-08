@@ -1,0 +1,23 @@
+{
+    "manifest_version": 2,
+    "name": "百科词条历史拒绝信息",
+    "version": "1.0",
+    "description": "百科词条历史拒绝信息",
+    "background":{
+         "page": "background.html"
+    },    
+    "content_scripts": [
+        {
+            "matches": ["*://admin.baike.qq.com/*"],
+            "js": ["js/jquery.min.js","js/refuse-history.js"],
+            "run_at":"document_end"
+        }
+    ] ,
+    "permissions": [
+        "cookies",      
+        "tabs",
+        "activeTab",
+        "*://qq.com/*",
+        "http://oss.oc.sogou-inc.com/jingyan_audit_test/do_interface_baike_audit.php"
+    ]
+}

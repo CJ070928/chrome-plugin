@@ -1,0 +1,43 @@
+// 与content_script通信
+chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
+    // console.log("Request comes from content script " + sender.tab.url);
+    var word_id=sender.tab.url.split("&sp=")[1].split("l")[1];
+    var jsonarray ={};
+    var msg={};
+    // console.log(word_id)
+	chrome.cookies.get( { 
+	    url: 'http://qq.com', 
+	    name: 'o_cookie' }, 
+	    function( cookie ){ 
+		    review_id=cookie.value;
+		    // console.log(review_id)
+            jsonarray.word_name = request.word_name; 
+            jsonarray.review_id = review_id;
+            jsonarray.word_id = word_id;
+            jsonarray.review_flag= request.review_flag;
+            jsonarray.editor_id = request.editor_id;
+            jsonarray.editor_name = request.editor_name;
+            jsonarray.history_refuse = request.history_refuse;
+            console.log(JSON.stringify(jsonarray));
+            msg.encodeString=encodeURI(JSON.stringify(jsonarray))
+            console.log(msg);
+	    });
+    // sendMessage(jsonarray)
+    console.log(jsonarray)
+    
+});
+
+var sendMessage=function(msg){
+   $.ajax({
+   	  type:"POST",
+   	  url:"",
+   	  data:msg,
+   	  datatype:"json",
+   	  success:function(res){
+
+   	  },
+   	  error:function(){
+
+   	  }
+   })
+}

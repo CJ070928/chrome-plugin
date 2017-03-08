@@ -1,0 +1,13 @@
+{
+    "manifest_version": 2,
+    "name": "webSite-identify",
+    "version": "1.0",
+    "description": "webSite-identify",
+    "content_scripts": [
+        {
+            "matches": ["http://admin.baike.qq.com/*"],
+            "all_frames":true,
+            "js": ["js/jquery.min.js","js/identify.js"]
+        }
+    ]
+}

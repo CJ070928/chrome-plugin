@@ -1,0 +1,21 @@
+#sticker {
+    background: #bada55;
+    color: white;
+    width: 150px;
+    height: 400px;
+    font-family: Droid Sans;
+    font-size: 15px;
+    line-height: 1.6em;
+    font-weight: bold;
+    text-align: center;
+    padding: 20px;
+    text-shadow: 0 1px 1px rgba(0,0,0,.2);
+    border-radius: 20px;
+    float:right;
+    z-index:999999;
+}
+
+#wrapper {
+    width:700px;
+    margin:0 auto;
+}

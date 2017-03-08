@@ -1,0 +1,40 @@
+@charset "utf-8";
+#sticker div.sp_dupArea_line {
+	position:relative;
+	top:5px;
+	height:40px;
+	width: 220px;
+	
+	font-size:14px;
+}
+
+#sticker div.sp_dupArea_line div {
+    left:10px;
+	height: 20px;
+	float: left;
+	min-width:20px;
+	top:15px;
+}
+
+#sticker div.sp_dupArea_line input{
+	vertical-align:middle;
+
+}
+#sticker {
+  width:240px;
+  height:400px;
+  position:fixed;
+  top:20px;
+  
+}
+#sticker-sticky-wrapper {
+    position:absolute !important;
+}
+
+
+   
+
+
+
+
+

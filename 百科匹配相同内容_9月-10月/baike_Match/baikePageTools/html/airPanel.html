@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="../css/suspendPanel.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="fake_div">
+<div class="sp_panel_area" id="sticker">
+  <div>
+    <p>和搜狗对比词条内容的重复性</p>
+    <p>从页面获取的词条名：<input id="sogou_citiao" type="text" maxlength="50" /></p>
+    <input type="button" id="citiao_compare" value="对比词条" maxlength="100" height="32"/>
+    <img id="sp_waiting_gif" src="../img/waiting.gif" height="15px" hidden="true"/>
+  </div>
+  
+<HR style="border:3 double color:#000">
+ 
+	<div class="sp_dupArea_line">
+  		<div>100%内容重复：</div>
+        <input id="sp_exact_match_color_show" type='color' name='color' style="width:20px"/>
+  		<div>
+        <input type="button" id="exact_match_button" value="hide/show"/>
+   		</div>
+	</div>
+  
+  <div class="sp_dupArea_line">
+  		<div>>80%内容重复：</div>
+        <input id="sp_high_match_color_show" type='color' name='color' style="width:20px"/>
+  		<div><input type="button" id="high_match_button" value="hide/show"/></div>    
+	</div>
+  
+	<div class="sp_dupArea_line">
+  		<div>>60%内容重复：</div>
+  		<input id="sp_middle_match_color_show" type='color' name='color' style="width:20px"/>
+  		<div><input type="button" id="middle_match_button" value="hide/show"/></div>
+	</div>
+  
+  	<div class="sp_dupArea_line">
+    	<div>>50%内容重复：</div>
+	  	<input id="sp_low_match_color_show" type='color' name='color' style="width:20px"/>
+  		<div><input type="button" id="low_match_button" value="hide/show"/></div>
+		</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+    "manifest_version": 2,
+    "name": "图片自动搜索",
+    "version": "1.0",
+    "description": "图片自动搜索",
+    "content_scripts": [
+        {
+            "matches": [ "http://admin.baike.qq.com/bkadmin/*" ],
+            "js": ["js/jquery.min.js","js/search_pic.js"]
+        }
+    ]
+}

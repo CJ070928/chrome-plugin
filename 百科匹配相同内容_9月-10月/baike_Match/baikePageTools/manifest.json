@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+
+  "name": "BAIKE page comparison tools",
+  "description": "This extension demonstrates a 'browser action' with kittens.",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+    "permissions": [
+        "http://*/",
+        "storage"
+    ],
+
+    "content_scripts": [
+    {
+      "matches": ["http://baike.baidu.com/*"],
+       "css":["css/contentScript.css", "css/suspendPanel.css", "css/spectrum.css"],
+       "js": ["js/lib/jquery-2.1.0.min.js", "js/lib/simple-expand.min.js", "js/lib/jquery.sticky.js","js/compareText.js", "js/lib/spectrum.js", "js/suspendPanel.js",  "js/main_1.js"]
+    }
+  ],
+    "web_accessible_resources": [
+        "html/airPanel.html",
+        "img/waiting.gif"
+    ]
+}
