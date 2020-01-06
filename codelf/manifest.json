@@ -1,0 +1,16 @@
+{
+    "manifest_version": 2,
+    "name": "变量名查找",
+    "version": "0.0.1",
+    "description": "变量名查找插件",
+    "icons": {
+        "16": "img/code_logo.png",
+        "48": "img/code_logo.png",
+        "128": "img/code_logo.png"
+    },
+    "browser_action": {
+        "default_icon": "img/code_logo.png",
+        "default_title": "这是一个示例Chrome插件",
+        "default_popup": "popup.html"
+    }
+}
